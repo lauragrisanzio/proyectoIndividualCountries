@@ -7,13 +7,18 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.STRING(3),
       allowNull: false,
-      unique: true,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
+    flag: {  //image
+      // type: DataTypes.ARRAY(DataTypes.STRING),
+      // validate:{
+      //   notEmpty : true
+      // }
+
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -34,12 +39,14 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     population: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
   },
     {
     timestamps: false
-  }
+    },
+    {charset: 'utf8',
+  collate: 'utf8_unicode_ci'}
   );
 };

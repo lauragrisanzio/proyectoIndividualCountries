@@ -1,10 +1,10 @@
 const { Country, Activity } = require("../db");
-const {Op} = require("sequelize")
 
-const getCountryById = async (id) => {
-    if (!id) throw Error("Complete all fields");
+
+const getCountryById = async (idPais) => {
+    if (!idPais) throw Error("Complete all fields");
     
-    const country = await Country.findByPk(id, {
+    const country = await Country.findByPk(idPais.toUpperCase(), {
         include: {
             model: Activity,
             attributes: ["name"]
@@ -15,21 +15,5 @@ const getCountryById = async (id) => {
     
   return country;
 };
-// const getCountryById = async (id) => {
-//   const countryById = await Country.findOne({
-//     attributes: [
-//       "name",
-//       "flag",
-//       "continent",
-//       "id",
-//       "capital",
-//       "subregion",
-//       "area",
-//       "population",
-//     ],
-//     where: { id: { [Op.iLike]: `%${id}` } },
-//   });
-//   return countryById;
-// };
 
 module.exports = getCountryById;

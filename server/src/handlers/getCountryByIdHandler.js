@@ -2,12 +2,12 @@ const express = require("express")
 const getCountryById = require("../controllers/getCountryById");
 
 const getCountryByIdHandler = async (req, res) => {
-    const { id } = req.params;
+    const { idPais } = req.params;
     try {
-        const countryId = await getCountryById(id)
-        res.status(200).json(countryId);
+        const countryId = await getCountryById(idPais)
+       return res.status(200).json(countryId);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+       return res.status(400).json({ error: error.message });
     }
 };
 

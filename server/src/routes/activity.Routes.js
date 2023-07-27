@@ -1,12 +1,11 @@
 const {Router} = require("express");
 
+const getAllActivitiesHandler = require("../handlers/getAllActivitiesHandler")
 const createActivityHandler = require("../handlers/createActivityHandler")
 
 const activityRouter = Router();
 
-activityRouter.get("/", (req, res) => {
-    res.send("ruta para get activities")
-});
+activityRouter.get("/", getAllActivitiesHandler);
 
 activityRouter.post("/", createActivityHandler);
 

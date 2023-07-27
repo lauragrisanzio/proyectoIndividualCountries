@@ -39,11 +39,11 @@ const { Country, Activity } = database.models;
 // Aca vendrian las relaciones:
 
 Country.belongsToMany(Activity, {
-  through: "countries_activities",
+  through: "Countries_Activities",
   timestamps: false,
 });
 Activity.belongsToMany(Country, {
-  through: "countries_activities",
+  through: "Countries_Activities",
   timestamps: false,
 });
 

@@ -2,6 +2,7 @@ const { Country, Activity } = require("../db");
 const {Op} = require("sequelize")
 
 const getCountryByName = async (name) => {
+  
     const countries = await Country.findAll({
         //findAll devuelve un array - findOne un objeto - necesitamos todos los paises que coincidan
         where: {
@@ -14,7 +15,7 @@ const getCountryByName = async (name) => {
             attributes: ["name", "difficulty", "duration", "season"],
         },
     });
-    if (!countries) throw new Error("No countries were found in the search");
+    if (!countries) throw Error("No countries were found in the search");
     return countries;
     
 };

@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       //   notEmpty : true
       // }
 
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     continent: {

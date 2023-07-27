@@ -60,7 +60,7 @@ const getAllCountries = async () => {
       (country) => Country.findOrCreate({
           where: {
             id: country.cca3,
-            name: country.name.official,
+            name: country.name.common,
             flag: country.flags.png
               ? country.flags.png
               : "Country'flag not found",

@@ -5,12 +5,10 @@ import "./home.styles.css";
 
 function Home () {
   return (
-    <div className="Home">
+    <div className="home">
       <NavBar />
-      
-      <Cards /> 
       <p>
-              Esta es la home page: tiene que tener:
+              Esta es la HOME page: tiene que tener:
               *SearchBar: un input de búsqueda
               para encontrar países por nombre.
               *Sector en el que se vea un listado de
@@ -28,6 +26,8 @@ function Home () {
         debe contar con un paginado que muestre un total de 10 países por
         página.
       </p>
+      
+      <Cards /> 
     </div>
   );
 }

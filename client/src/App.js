@@ -3,19 +3,20 @@ import { Routes,Route, useLocation, useNavigate, BrowserRouter } from "react-rou
 import Detail from './views/detail/detail.component';
 import Home from "./views/home/home.component.jsx";
 import Create from './views/create/create.component';
+import Landing from "./views/landing/landing.component";
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-  
-        <Routes>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/home/:id" element={<Detail />}></Route>
-          <Route path="/activity" element={<Create />}></Route>
-        </Routes>
-
+      {/* {pathname !== "/" && <Nav exit={exit} onSearch={onSearch} />} */}
+      <Routes>
+        <Route path="/" element={<Landing />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/home/:id" element={<Detail />}></Route>
+        <Route path="/activity" element={<Create />}></Route>
+      </Routes>
     </div>
   );
 }

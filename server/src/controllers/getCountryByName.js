@@ -14,9 +14,10 @@ const getCountryByName = async (name) => {
             model: Activity,
             attributes: ["name", "difficulty", "duration", "season"],
         },
-    });
+    }
+    )
     if (!countries) throw Error("No countries were found in the search");
-    return countries;
+    return countries
     
 };
 

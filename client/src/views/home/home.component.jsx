@@ -6,8 +6,10 @@ import {getByName, getCountries}  from "../../redux/actions";
 
 import NavBar from "../../components/navbar/navbar.component";
 import Cards from "../../components/cards/cards.component";
+import Pagination from "../../components/pagination/pagination.component";
 
-import "./home.styles.css";
+import styles from"./home.module.css";
+
 
 function Home() {
   const dispatch = useDispatch(); //se le envia una action al estado
@@ -16,53 +18,50 @@ function Home() {
   const allCountries = useSelector((state) => state.allCountries); //se indica al componente de que estado depende, a que estado quiero estar suscripto
   const [searchString, setSearchString] = useState("");
 
-    //funcion que setea el searchstring(value) del input
-    const handleChange = (e) => {
-      e.preventDefault();  //para que la pagina no se actualice
-      setSearchString(e.target.value.toLowerCase())
-  }
+  //funcion que setea el searchstring(value) del input
+  const handleChange = (e) => {
+    e.preventDefault(); //para que la pagina no se actualice
+    setSearchString(e.target.value.toLowerCase());
+  };
 
-  //*filtro sobre el estado:
-  //   //funcionalidades de barra de busqueda:
-  //   const [filtered, setFiltered] = useState(allCountries);  //cuando se cargue el componente quiero que se carguen todos los countries
-
-  //   const handleSubmit = (e) => {
-  //      e.preventDefault();
-  //     const filtered = allCountries.filter((country) => (country.name.includes(searchString)))
-  //     setFiltered(filtered);
-  // }
-
-  //*FILTRO CON LA DB:
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getByName(searchString))    
-}
-
+    dispatch(getByName(searchString));
+  };
 
   useEffect(() => {
     dispatch(getCountries()); //1° parametro lo que queremos ejecutar al momento de hacer el dispatch, cuando se monta
     // return(()=>{}) //=> en esta callback se ejecuta una fx al momento de desmontar
   }, [dispatch]); //2° parametro una array de dependecia
 
-  return (
-    <div className="home">
-      <NavBar handleChange={handleChange} handleSubmit={handleSubmit}/>
-      <p>
-        Esta es la HOME page: tiene que tener: *SearchBar: un input de búsqueda
-        para encontrar países por nombre. *Sector en el que se vea un listado de
-        cards con los países. Al iniciar deberá cargar los primeros resultados
-        obtenidos desde la ruta GET /countries y deberá mostrar su: Imagen de la
-        bandera. Nombre. Continente. *Cuando se le hace click a una Card deberá
-        redirigir al detalle de ese país específico. *Botones/Opciones para
-        filtrar por continente y por tipo de actividad turística.
-        *Botones/Opciones para ordenar tanto ascendentemente como
-        descendentemente los países por orden alfabético y por cantidad de
-        población. *Paginado: el listado de países se hará por partes. Tu SPA
-        debe contar con un paginado que muestre un total de 10 países por
-        página.
-      </p>
+  const countriesPage = allCountries.slice(0, 10);
+  const countriesPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1); //current page= pagina actual
+  const pageNumber = Math.ceil(allCountries / countriesPerPage);
+  
+  const pageClick = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
 
-      <Cards allCountries={allCountries} />
+  return (
+    <div className={styles.home}>
+      <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
+      <Pagination currentPage={currentPage } pageNumber={pageNumber} pageClick={pageClick} />
+      <p>
+        Esta es la HOME page: tiene que tener: *Botones/Opciones para filtrar
+        por continente y por tipo de actividad turística. *Botones/Opciones para
+        ordenar tanto ascendentemente como descendentemente los países por orden
+        alfabético y por cantidad de población. *Paginado: el listado de países
+        se hará por partes. Tu SPA debe contar con un paginado que muestre un
+        total de 10 países por página.
+      </p>
+      <div>
+        <button>PREVIOUS</button>
+        <br />
+        <br />
+        <button>NEXT</button>
+      </div>
+      <Cards countriesPage={countriesPage} />
     </div>
   );
 };

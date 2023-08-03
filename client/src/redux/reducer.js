@@ -1,14 +1,16 @@
 // //tambien tiene el estado(lo tiene como tal) pero pertenece al store -
 // //aca se declara el estado
 
-import { GET_COUNTRIES, GET_BY_NAME, GET_BY_DETAIL } from "./actions";
+import { GET_COUNTRIES, GET_BY_NAME, GET_BY_DETAIL, FILTER_BY_CONTINENT } from "./actions";
 
 const initialState = {
     allUsers: [],
-    allUsersCopy:[],  //copiua del estado original por si acaso
+    cards:[],  //copiua del estado original por si acaso
     allCountries: [],
   allActivities: [],
-    detail: []
+  detail: [],
+  continent: "All",
+    activity: "All"
 };
 
 
@@ -29,6 +31,14 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           detail: action.payload, //el action payload va a ser todos los paises
+        };
+      case FILTER_BY_CONTINENT:
+        
+        return {
+          ...state,
+          myFavorites: state.allCharacters.filter(
+            (char) => char.gender === action.payload
+          ),
         };
       default:
         return state;

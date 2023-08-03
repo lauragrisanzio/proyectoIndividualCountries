@@ -10,7 +10,7 @@ const getAllCountriesHandler = async (req, res) => {
             : await getAllCountries()
         return res.status(201).json(country)
     } catch (error) {
-        return res.status(400).json({error:error.message});
+        return res.status(400).send("No se encontro el pais solicitado");
     }
     
 };

@@ -4,6 +4,9 @@ export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const GET_BY_DETAIL = "GET_BY_DETAIL";
 export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
+export const ORDER_BY_AZ = "ORDER_BY_AZ";
+export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
 
 export const getCountries =  () => {
        return async (dispatch) => {
@@ -49,6 +52,32 @@ export const filterContinent = (continent) => {
     payload: continent ,
   };
 };
+
+export const filterActivity = (season) => {
+  return {
+    type: "FILTER_BY_ACTIVITY",
+    payload: season,
+  };
+};
+
+export const orderByAz = (order) => {
+return {
+  type: "ORDER_BY_AZ",
+  payload: order,
+};
+
+};
+
+export const orderByPopulation = (order) => {
+
+  return {
+  type: "ORDER_BY_POPULATION",
+  payload: order,
+  };
+  
+  
+};
+
 
 //se solicita la informacion
 //que queremos hacer con el estado

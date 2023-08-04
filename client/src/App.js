@@ -2,7 +2,7 @@ import React from "react";
 import { Routes,Route, useLocation, useNavigate, BrowserRouter } from "react-router-dom";
 import Detail from './views/detail/detail.component';
 import Home from "./views/home/home.component.jsx";
-import Create from './views/create/create.component';
+import Form from './views/form/form.component';
 import Landing from "./views/landing/landing.component";
 
 import './App.css';
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Landing />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/home/:id" element={<Detail />}></Route>
-        <Route path="/activity" element={<Create />}></Route>
+        <Route path="/activity" element={<Form />}></Route>
       </Routes>
     </div>
   );

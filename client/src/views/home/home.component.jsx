@@ -6,9 +6,11 @@ import {getByName, getCountries}  from "../../redux/actions";
 
 import NavBar from "../../components/navbar/navbar.component";
 import Cards from "../../components/cards/cards.component";
+import Header from "../../components/headers/header.component";
 import Pagination from "../../components/pagination/pagination.component";
 
 import styles from"./home.module.css";
+import { Link } from "react-router-dom";
 
 
 function Home() {
@@ -46,22 +48,23 @@ function Home() {
   return (
     <div className={styles.home}>
       <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
-      <Pagination currentPage={currentPage } pageNumber={pageNumber} pageClick={pageClick} />
+      <Header />
+      <Pagination
+        currentPage={currentPage}
+        pageNumber={pageNumber}
+        pageClick={pageClick}
+      />
+      <Link to={"/activity"}>
+        <button>CREATE ACTIVITY</button>
+      </Link>
       <p>
         Esta es la HOME page: tiene que tener: *Botones/Opciones para filtrar
-        por continente y por tipo de actividad turística. *Botones/Opciones para
-        ordenar tanto ascendentemente como descendentemente los países por orden
-        alfabético y por cantidad de población. *Paginado: el listado de países
-        se hará por partes. Tu SPA debe contar con un paginado que muestre un
-        total de 10 países por página.
+        por continente y por tipo de actividad turística. *Paginado: el listado
+        de países se hará por partes. Tu SPA debe contar con un paginado que
+        muestre un total de 10 países por página.
       </p>
-      <div>
-        <button>PREVIOUS</button>
-        <br />
-        <br />
-        <button>NEXT</button>
-      </div>
-      <Cards countriesPage={countriesPage} />
+      <div></div>
+      <Cards allCountries={allCountries} />
     </div>
   );
 };

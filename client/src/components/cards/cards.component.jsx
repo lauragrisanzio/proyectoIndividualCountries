@@ -2,14 +2,23 @@ import Card from "../card/card.component"
 
 import "./cards.styles.css";
 
-function Cards({countriesPage}) {
+// function Cards({countriesPage}) {
   
  
+//   return (
+//     <div className="cards-list">
+      
+//       {countriesPage&& countriesPage.map(country => <Card country={country } />
+//      )}
+//     </div>
+//   );
+// }
+function Cards({ allCountries }) {
+  
   return (
     <div className="cards-list">
-      
-      {countriesPage&& countriesPage.map(country => <Card country={country } />
-     )}
+      {allCountries &&
+        allCountries.map((country) => <Card country={country} />)}
     </div>
   );
 }

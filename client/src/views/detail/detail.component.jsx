@@ -35,7 +35,7 @@ const Detail = () => {
           <p>Capital: {detail.capital}</p>
           <p>Subregion: {detail.subregion}</p>
           <p>Area: {detail.area} km2</p>
-          <p>Population: {detail.population}</p>
+          <p>Population: {detail.population} persons</p>
         </>
       ) : (
         <h3>Loading...</h3>

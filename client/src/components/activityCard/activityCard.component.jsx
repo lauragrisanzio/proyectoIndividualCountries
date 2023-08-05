@@ -5,14 +5,15 @@ import styles from "./activityCard.module.css"
 
 export const ActivityCard = ({ activity }) => {
     
-    const { season, duration, difficulty, name, Countries } = activity
+    const { season, duration, difficulty, name, country } = activity
 
     return (
       <div className={styles.cardContainer}>
         {name ? (
           <div>
             <h1>{name}</h1>
-            {/* <h1>{Countries.name}</h1> como hago para que me aparezca el country*/}
+            <h1>{country}</h1> 
+            {/* como hago para que me aparezca el country */}
             
             <h2>Duration: {duration} h</h2>
             <h2>Difficulty level: {difficulty}</h2>

@@ -72,7 +72,11 @@ const getAllCountries = async () => {
             area: country.area,
             population: country.population,
             // ? country.population : "Invite you looking for this information"
-          }
+        },
+        include: {
+            model: Activity,
+            attributes: ["name", "difficulty", "duration", "season"],
+        },
         })
     ); 
   } catch (error) {

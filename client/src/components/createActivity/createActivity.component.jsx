@@ -1,23 +1,28 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { createActivities } from "../../redux/actions"
+import { createActivities, getCountries } from "../../redux/actions";
 import { validator } from "./validator";
 
 import styles from "./createActivity.module.css";
 
 const CreateActivity = () => {
-
+const { allCountries} = useSelector((state) => state);
+  
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
-    duration: "",
-    difficulty:"",
+    duration: 0,
+    difficulty:0,
     season: "",
-    countries: []
+    countriesId: []
   })
-
+  
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    dispatch(getCountries());
+},[dispatch])
 
   const handleChange = (event) => {
     const property = event.target.name;
@@ -28,37 +33,42 @@ const CreateActivity = () => {
     //actualizamos el estado values
   };
   
+  //handlers:manejador de eventos--cuando ocurra una accion sucede lo que indica el handler
+  const handleSelectCountries = (event) => {
+    setValues({
+      ...values,
+      countriesId:[...values.countriesId, event.target.value.toUpperCase()]
+})
+  
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (values.name === '' || values.duration === '' || values.difficulty === '' || values.season === ''
-      || values.countries.length === 0)
+      || values.countriesId.length === 0)
     return alert('You must complete all fields');
     dispatch(createActivities(values));
+    console.log(values);
     alert('Activity Created');
     setValues({
       name: '',
-      duration: '',
-      difficulty: '',
+      duration: 0,
+      difficulty: 0,
       season: '',
-      countries: []
+      countriesId: []
     })
   };
 
   return (
     <div>
+      <button>HOME</button>
       <h1>NEW TOURIST ACTIVITY</h1>
       <h2>FUN CREATING A TOURIST ACTIVITY</h2>
       <p>
         Estas en el Create. - form para crear actividad turistica - en esta
         vista se encontrará el formulario para crear una actividad turística.
-        Este formulario debe ser controlado completamente con JavaScritp. No se
-        pueden utilizar validaciones HTML, ni utilizar librerías especiales para
-        esto. Posibilidad de seleccionar/agregar varios países en simultáneo.
-        Botón para crear la actividad turística. [IMPORANTE]: es requisito que
-        el formulario de creación esté validado sólo con JavaScript. Puedes
-        agregar las validaciones que consideres. Por ejemplo: que el nombre de
-        la actividad no pueda contener números, o que la duración no pueda
-        exceder determinado valor, etc.
+        Posibilidad de seleccionar/agregar varios países en simultáneo. Botón
+        para crear la actividad turística.
       </p>
       <div className={styles.form}>
         <form onSubmit={handleSubmit}>
@@ -71,39 +81,136 @@ const CreateActivity = () => {
               name="name"
               onChange={handleChange}
             />
-            {errors.name1 ? (
-            <p className="errors-name">{errors.name1}</p>) : "Name ok"}
+            {errors.name1 && <p>{errors.name1}</p>}
           </div>
+          <br />
           <div>
-            <label htmlFor="duration"> Duration:</label>
+            <label htmlFor="duration"> Duration hs:</label>
             <input
-              type=""
-              // value={userData.password}
+              type="number"
+              // min={1}
+              // max={24}
+              value={values.duration}
               name="duration"
-              // onChange={handleChange}
+              onChange={handleChange}
             />
-            {/* {errors.p1 ? <p>{errors.p1}</p> : <p>{errors.p2}</p>} */}
-          <div>
-            <label htmlFor="difficulty"> Dificculty:</label>
-            <input
-              type=""
-              // value={userData.password}
-              name="difficulty"
-              // onChange={handleChange}
-            />
-            {/* {errors.p1 ? <p>{errors.p1}</p> : <p>{errors.p2}</p>} */}
-          </div>
+            {errors.duration3 ? (
+              <p>{errors.duration3}</p>
+            ) : errors.duration2 ? (
+              <p>{errors.duration2}</p>
+            ) : (
+              <p>{errors.duration1}</p>
+            )}
+            <br />
+            <div>
+              <label> Dificculty level:</label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="1"
+                  name="difficulty"
+                  onChange={handleChange}
+                />
+                1
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="2"
+                  name="difficulty"
+                  onChange={handleChange}
+                />
+                2
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="3"
+                  name="difficulty"
+                  onChange={handleChange}
+                />
+                3
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="4"
+                  name="difficulty"
+                  onChange={handleChange}
+                />
+                4
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="5"
+                  name="difficulty"
+                  onChange={handleChange}
+                />
+                5
+              </label>
+              {errors.diff1 && <p className="errors-form">{errors.diff1}</p>}
+            </div>
+            <br />
           </div>
           <div>
             <label htmlFor="season"> Season:</label>
-            <input
-              type=""
-              // value={userData.password}
+            <select
+              placeholder="Season to do it"
+              type="text"
+              value={values.season}
               name="season"
-              // onChange={handleChange}
-            />
-            {/* {errors.p1 ? <p>{errors.p1}</p> : <p>{errors.p2}</p>} */}
+              onChange={handleChange}
+            >
+              <option value="" selected>
+                Season:
+              </option>
+              <option value="Autumn">Autumn</option>
+              <option value="Spring">Spring</option>
+              <option value="Summer">Summer</option>
+              <option value="Winter">Winter</option>
+            </select>
+            {errors.s1 && <p className="errors-form">{errors.s1}</p>}
+            <div>{values.season}</div>
           </div>
+          <br />
+          <div className="country-form">
+            <label htmlFor="">
+              Select countries:
+              <select
+                name="countries"
+                multiple={true}
+                onChange={handleSelectCountries}
+              >
+                {/* <option > Countries </option> */}
+                {allCountries.map((c) => (
+                  <option value={c.id}>{c.name}</option>
+                ))}
+              </select>
+            </label>
+            <div>{values.countriesId}</div>
+          </div>
+          {/* <div>
+            {values.countryId.map((country) => (
+              <div>
+                <input
+                  className="Form__Button"
+                  type="button"
+                  value="X"
+                  onClick={() => handleDelete(country)}
+
+                />
+                <p>{country}</p>
+              </div>
+            ))}
+          </div> */}
+          <br />
+          <br />
 
           <div>
             <button type="submit">CREATE ACTIVITY</button>
@@ -113,7 +220,7 @@ const CreateActivity = () => {
     </div>
   );
 };
-
+   
 export default CreateActivity;
 
 //el state del componente es la "única fuente de la verdad"

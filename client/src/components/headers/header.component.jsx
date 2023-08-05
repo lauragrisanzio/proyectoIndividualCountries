@@ -1,9 +1,9 @@
 import styles from "./header.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../card/card.component";
 
-import { orderByAz, orderByPopulation, filterActivity, filterContinent } from "../../redux/actions";
+import { orderByAz, orderByPopulation, filterActivity, filterContinent, getActivities, getCountries } from "../../redux/actions";
 
 import React from 'react'
 
@@ -14,7 +14,14 @@ const Header = () => {
 
   const allCountries = useSelector((state) => state.allCountries); //= a mapStateToProps, me traigo la info del estado global
   const countries = useSelector((state) => state.countries);
+  const allActivities = useSelector((state) =>state.allActivities)
   
+  useEffect(() => {
+    dispatch(getCountries())
+    dispatch(getActivities());
+  }, [dispatch]);
+
+
   const handleOrder = (event) => {
     setAux(!aux);
     dispatch(orderByAz(event.target.value));
@@ -28,6 +35,7 @@ const Header = () => {
   const handleFilterContinent = (event) => {
     event.preventDefault();
     dispatch(filterContinent(event.target.value));
+    if(event.target.value==="All") getCountries()
   };
 const handleFilterActivity = (event) => {
   event.preventDefault();
@@ -52,7 +60,6 @@ const handleFilterActivity = (event) => {
         <option value="Higher Population">Higher Population</option>
       </select>
 
-
       <select name="filter" onChange={handleFilterContinent}>
         <option value="" selected>
           Filter by Continent:
@@ -72,11 +79,13 @@ const handleFilterActivity = (event) => {
         <option value="" selected>
           Filter by Activities's Season
         </option>
-        <option value="Autumn">Autumn</option>
+        {allActivities.map((a) => (
+          <option value={a.name}>{a.name}</option>
+        ))}
+        {/* <option value="Autumn">Autumn</option>
         <option value="Spring">Spring</option>
         <option value="Summer">Summer</option>
-        <option value="Winter">Winter</option>
-        {/* <option value="Fav">Todos Favoritos</option> */}
+        <option value="Winter">Winter</option> */}
       </select>
 
       {/* {countries.map(({ id, name, flag, continent }) => {

@@ -56,15 +56,19 @@ export const getByDetail = (id) => {
   };
 };
 
-export const createActivities = () => {
+export const createActivities = (data) => {
+  console.log(data);
   return async (dispatch) => {
-    const activity = await axios.post("http://localhost:3001/activities")
-    return (dispatch)({
-      type: "GET_ACTIVITIES",
-      payload: activity.data
-    })
-  }
-}
+    const newActivity = await axios.post(
+      "http://localhost:3001/activities",
+      data
+    )
+    return dispatch({
+      type: "CREATE_ACTIVITIES",
+      payload: newActivity
+    });
+  };
+};
 
 
 export const filterContinent = (payload) => {

@@ -8,6 +8,7 @@ const server = express();
 server.use(morgan("dev"));
 
 server.use(cors());
+server.use(express.json());
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -20,7 +21,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use(express.json());
+
 server.use("/", indexRoute);
 
 // !/Probar despues

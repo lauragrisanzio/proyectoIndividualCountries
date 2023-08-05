@@ -7,17 +7,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: 
-  /* linear-gradient(#e66465, #9198e5); */
-  linear-gradient(
+    linear-gradient(
     to left,
-    #ee1,
-    #ee8
+    #e66465,
+    #9198e5
     
 
-  );
+  ); 
+  /* linear-gradient(, #9198e5); */
   text-align: center;
-}
-
+} 
+ /* .home{
+  background-image: url(../../../../countries.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      height: 100vh;
+      width: 100%;
+    
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+    /* } */ 
 
 .home {
 display: flex;

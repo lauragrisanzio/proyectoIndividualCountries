@@ -53,11 +53,11 @@ const handleFilterActivity = (event) => {
       </select>
 
 
-      <select name="filter" onChange={(e) => handleFilterContinent(e)}>
+      <select name="filter" onChange={handleFilterContinent}>
         <option value="" selected>
           Filter by Continent:
         </option>
-        <option value="All">All countries</option>
+        <option value="All">All </option>
         <option value="Africa">Africa</option>
         <option value="Antarctica">Antarctica</option>
         <option value="South America">South America</option>

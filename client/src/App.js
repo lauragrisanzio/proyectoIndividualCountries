@@ -2,10 +2,12 @@ import React from "react";
 import { Routes,Route, useLocation, useNavigate, BrowserRouter } from "react-router-dom";
 import Detail from './views/detail/detail.component';
 import Home from "./views/home/home.component.jsx";
-import Form from './views/form/form.component';
+import Activities from "./views/activities/activities";
 import Landing from "./views/landing/landing.component";
 
 import './App.css';
+import ActivitiesCards from "./components/activitiesCards/activitiesCards";
+import CreateActivity from "./components/createActivity/createActivity.component";
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
         <Route path="/" element={<Landing />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/home/:id" element={<Detail />}></Route>
-        <Route path="/activity" element={<Form />}></Route>
+        <Route path="/activity" element={<Activities />}></Route>
+        <Route path="/activity/allActivities" element={<ActivitiesCards />}></Route>
+        <Route path="/activity/createActivity" element={<CreateActivity />}></Route>
       </Routes>
     </div>
   );

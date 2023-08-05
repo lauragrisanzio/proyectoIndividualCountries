@@ -55,7 +55,7 @@ function Home() {
         pageClick={pageClick}
       />
       <Link to={"/activity"}>
-        <button>CREATE ACTIVITY</button>
+        <button>ACTIVITIES</button>
       </Link>
       <p>
         Esta es la HOME page: tiene que tener: *Botones/Opciones para filtrar

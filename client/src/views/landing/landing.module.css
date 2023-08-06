@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap');
+
+p{
+  font-family: 'Black And White Picture', sans-serif;
+  text-align: center; 
+font-weight: bold; 
+font-size: 100px; 
+color:darkgreen; 
+text-decoration: none;
+}
+
+
+.explore:hover{
+ color:green;/* color de fuente hover */
+  text-decoration: underline;
+  border-color: black;
+}
+
 *{
     padding: 0;
     margin: 0;

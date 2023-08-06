@@ -4,13 +4,20 @@ import styles from "./landing.module.css";
 
 
 const Landing = () => {
+  const string = "EXPLORE THE WORLD"
+  const length = string.length
+  const deg = 360/length
+  
   return (
-    <div className={styles.landing}>
-          <h1>EXPLORE DE WORLD!!</h1>
-          <br />
-      <Link to={"/home"}>
-        <button>WELCOME</button>
-      </Link>
+    <div>
+      <div className={styles.landing}>
+        <div className={styles.explore}>
+          <Link to={"/home"}style={{ textDecoration: 'none' }}>
+            <p>¡EXPLORE DE WORLD!</p>
+          </Link>
+        </div>
+      </div>
+
     </div>
   );
 }

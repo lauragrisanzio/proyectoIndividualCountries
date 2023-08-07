@@ -13,7 +13,7 @@ const Landing = () => {
       <div className={styles.landing}>
         <div className={styles.explore}>
           <Link to={"/home"}style={{ textDecoration: 'none' }}>
-            <p>¡EXPLORE DE WORLD!</p>
+            <p className={styles.textLanding }>¡EXPLORE THE WORLD!</p>
           </Link>
         </div>
       </div>

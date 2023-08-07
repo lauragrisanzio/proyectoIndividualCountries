@@ -1,18 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap');
 
-p{
+.textLanding{
   font-family: 'Black And White Picture', sans-serif;
   text-align: center; 
 font-weight: bold; 
-font-size: 100px; 
-color:darkgreen; 
+font-size: 80px; 
+color:rgb(0, 10, 0); 
 text-decoration: none;
 }
 
 
 .explore:hover{
- color:green;/* color de fuente hover */
-  text-decoration: underline;
+ 
+  border: 5px solid #000;
+  border-radius: 25px;
+width: 400px;
+background-color: #DFF7E8;
   border-color: black;
 }
 
@@ -23,7 +26,7 @@ text-decoration: none;
   }
 
 .landing{
-      background-image: url(../../../public/images/LANDING/71ec66e1ef741a065171d37b1bab5cda.jpg);
+      background-image: url(../../../public/images/LANDING/pexels-photo-14588277.jpeg);
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;

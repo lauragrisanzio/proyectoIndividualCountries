@@ -43,7 +43,7 @@ const handleFilterActivity = (event) => {
   };
   
   return (
-    <div>
+    <div className={styles.containerFilters}>
       <select name="order" autoFocus onChange={handleOrder}>
         <option value="" selected>
           Alphabetical Order:

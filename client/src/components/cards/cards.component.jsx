@@ -1,6 +1,6 @@
 import Card from "../card/card.component"
 
-import "./cards.styles.css";
+import styles from "./cards.module.css";
 
 // function Cards({countriesPage}) {
   
@@ -16,7 +16,7 @@ import "./cards.styles.css";
 function Cards({ allCountries }) {
   
   return (
-    <div className="cards-list">
+    <div className={styles.cardList}>
       {allCountries &&
         allCountries.map((country) => <Card country={country} />)}
     </div>

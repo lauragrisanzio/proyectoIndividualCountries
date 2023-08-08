@@ -36,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_ACTIVITIES:
       return {
         ...state,
-        allActivities: action.payload,
+        allActivities: [...state.allActivities, action.payload],
       };
 
     case GET_BY_NAME:

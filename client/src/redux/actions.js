@@ -63,9 +63,10 @@ export const createActivities = (data) => {
       "http://localhost:3001/activities",
       data
     )
+    
     return dispatch({
-      type: "CREATE_ACTIVITIES",
-      payload: newActivity
+ 
+      payload: newActivity.data
     });
   };
 };

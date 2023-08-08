@@ -1,9 +1,9 @@
 const createActivity = require("../controllers/createActivity");
 
 const createActivityHandler = async (req, res) => {
-    
+    const { name, difficulty, duration, season, countriesId } = req.body;
     try {
-      const { name, difficulty, duration, season, countriesId } = req.body;
+      
       
         const newActivity = await createActivity(
           name,

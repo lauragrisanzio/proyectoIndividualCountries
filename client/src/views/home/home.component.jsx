@@ -1,6 +1,7 @@
 //hook para controlar el ciclo de vida: useEffect
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {getByName, getCountries}  from "../../redux/actions";
 
@@ -10,7 +11,6 @@ import Header from "../../components/headers/header.component";
 import Pagination from "../../components/pagination/pagination.component";
 
 import styles from"./home.module.css";
-import { Link } from "react-router-dom";
 
 
 function Home() {
@@ -54,9 +54,6 @@ function Home() {
         pageNumber={pageNumber}
         pageClick={pageClick}
       />
-      <Link to={"/activity"}>
-        <button>ACTIVITIES</button>
-      </Link>
       <p>
         Esta es la HOME page: tiene que tener: *Botones/Opciones para filtrar
         por continente y por tipo de actividad turística. *Paginado: el listado

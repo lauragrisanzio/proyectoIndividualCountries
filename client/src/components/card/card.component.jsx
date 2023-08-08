@@ -7,12 +7,14 @@ function Card({ country }) {
  const {id, name, flag, continent} = country
   return (
     <div className={styles.cardContainer}>
-      <div>
+      <div className={styles.card}>
+        <Link className={styles.Link} to={`/home/${id}`}>
         <img src={flag} alt="" />
-        <Link to={`/home/${id}`}>
+        
           <h2>{name}</h2>
-        </Link>
+        
         <p>{continent}</p>
+        </Link>
       </div>
     </div>
   );

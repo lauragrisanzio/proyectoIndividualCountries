@@ -44,7 +44,7 @@ const { allCountries} = useSelector((state) => state);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (values.name === '' || values.duration === '' || values.difficulty === '' || values.season === ''
+    if (values.name === '' || values.duration === 0 || values.difficulty === 0 || values.season === ''
       || values.countriesId.length === 0)
     return alert('You must complete all fields');
     dispatch(createActivities(values));
@@ -71,7 +71,7 @@ const { allCountries} = useSelector((state) => state);
         para crear la actividad turística.
       </p>
       <div className={styles.form}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className="form">
             <label htmlFor="name">Name:</label>
             <input
@@ -79,7 +79,7 @@ const { allCountries} = useSelector((state) => state);
               type="text"
               value={values.name}
               name="name"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             />
             {errors.name1 && <p>{errors.name1}</p>}
           </div>
@@ -92,7 +92,7 @@ const { allCountries} = useSelector((state) => state);
               // max={24}
               value={values.duration}
               name="duration"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             />
             {errors.duration3 ? (
               <p>{errors.duration3}</p>
@@ -110,7 +110,7 @@ const { allCountries} = useSelector((state) => state);
                   type="radio"
                   value="1"
                   name="difficulty"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 1
               </label>
@@ -120,7 +120,7 @@ const { allCountries} = useSelector((state) => state);
                   type="radio"
                   value="2"
                   name="difficulty"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 2
               </label>
@@ -130,7 +130,7 @@ const { allCountries} = useSelector((state) => state);
                   type="radio"
                   value="3"
                   name="difficulty"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 3
               </label>
@@ -140,7 +140,7 @@ const { allCountries} = useSelector((state) => state);
                   type="radio"
                   value="4"
                   name="difficulty"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 4
               </label>
@@ -150,7 +150,7 @@ const { allCountries} = useSelector((state) => state);
                   type="radio"
                   value="5"
                   name="difficulty"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 5
               </label>
@@ -165,7 +165,7 @@ const { allCountries} = useSelector((state) => state);
               type="text"
               value={values.season}
               name="season"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             >
               <option value="" selected>
                 Season:
@@ -185,7 +185,7 @@ const { allCountries} = useSelector((state) => state);
               <select
                 name="countries"
                 multiple={true}
-                onChange={handleSelectCountries}
+                onChange={e => handleSelectCountries(e)}
               >
                 {/* <option > Countries </option> */}
                 {allCountries.map((c) => (

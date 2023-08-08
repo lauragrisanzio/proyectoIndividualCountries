@@ -4,8 +4,8 @@
   font-family: 'Black And White Picture', sans-serif;
   text-align: center; 
 font-weight: bold; 
-font-size: 80px; 
-color:rgb(0, 10, 0); 
+font-size: 90px; 
+color: black; 
 text-decoration: none;
 }
 
@@ -15,7 +15,7 @@ text-decoration: none;
   border: 5px solid #000;
   border-radius: 25px;
 width: 400px;
-background-color: #DFF7E8;
+background-color: transparent;
   border-color: black;
 }
 
@@ -26,7 +26,7 @@ background-color: #DFF7E8;
   }
 
 .landing{
-      background-image: url(../../../public/images/LANDING/pexels-photo-14588277.jpeg);
+      background-image: url(../../../public/images/LANDING/Mappam_Humble.jpg);
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;

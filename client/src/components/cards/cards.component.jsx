@@ -17,8 +17,10 @@ function Cards({ allCountries }) {
   
   return (
     <div className={styles.cardList}>
-      {allCountries &&
-        allCountries.map((country) => <Card country={country} />)}
+      <div >
+        {allCountries &&
+          allCountries.map((country) => <Card country={country} />)}
+      </div>
     </div>
   );
 }

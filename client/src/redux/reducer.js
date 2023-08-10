@@ -37,6 +37,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allActivities: [...state.allActivities, action.payload],
+        // allActivities: state.allActivities.concat(action.payload),
       };
 
     case GET_BY_NAME:
@@ -63,26 +64,20 @@ const rootReducer = (state = initialState, action) => {
 
         allCountries: continentFilter,
       };
-    
+
     case FILTER_BY_ACTIVITY:
       const filterByActivities = state.allCountries;
-      const filteredAct = filterByActivities.filter((c) => {
-        return c.Activity.filter((c) => {
-          return c.Activity.name === action.payload;
-        });
-      });
-
-      if (action.payload === "All") {
+      const filteredAct = action.payload === "All" ? filterByActivities :
+        console.log(filterByActivities);
+        filterByActivities.filter((c) => {
+          const activities = c.allActivities.map((act) => act.name)
+          return activities.includes(action.payload)
+        })
         return {
           ...state,
-          allCountries: filterByActivities,
+          countries: filteredAct,
         };
-      } else {
-        return {
-          ...state,
-          allCountries: filteredAct,
-        };
-      }
+      
 
     case ORDER_BY_AZ:
       const order = [...state.allCountries].sort((a, b) => {

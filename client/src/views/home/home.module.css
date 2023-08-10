@@ -7,10 +7,10 @@ font-family: 'Dongle', sans-serif;
 
 background-image: url(../../../public/images/HOME/capadocia_888_3.jpg);
 background-position: center center;
-      background-repeat: no-repeat;
+      background-repeat:no-repeat;
       background-size: cover;
-      background-attachment: fixed;
-      height: auto;
+      background-attachment:fixed;
+      height: 100vh;
       width: 100%;
     
       }
@@ -33,3 +33,4 @@ display: flex;
 flex-direction: column;
 align-items: center;
 }
+

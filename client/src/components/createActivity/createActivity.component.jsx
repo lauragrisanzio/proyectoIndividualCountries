@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {useNavigate} from "react-router"
 
-import { createActivities, getCountries } from "../../redux/actions";
+import { createActivities, getCountries, getActivities } from "../../redux/actions";
 import { validator } from "./validator";
 
 import styles from "./createActivity.module.css";
 
 const CreateActivity = () => {
-const { allCountries} = useSelector((state) => state);
-  
+  const { allCountries } = useSelector((state) => state);
+
+  const history = useNavigate();
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
     duration: 0,
     difficulty:0,
     season: "",
-    countriesId: []
+    CountryId: []
   })
   
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    dispatch(getCountries());
+    dispatch(getCountries(),
+    getActivities());
 },[dispatch])
 
   const handleChange = (event) => {
     const property = event.target.name;
-    const value = event.target.value.toUpperCase();
+    const value = event.target.value;
     setErrors(validator({ ...values, [property]: value }));
     //seteamos los errores en nuestro estado
     setValues({ ...values, [property]: value });
@@ -37,7 +40,7 @@ const { allCountries} = useSelector((state) => state);
   const handleSelectCountries = (event) => {
     setValues({
       ...values,
-      countriesId:[...values.countriesId, event.target.value.toUpperCase()]
+      CountryId:[...values.CountryId, event.target.value.toUpperCase()]
 })
   
   };
@@ -45,9 +48,13 @@ const { allCountries} = useSelector((state) => state);
   const handleSubmit = (event) => {
     event.preventDefault();
     if (values.name === '' || values.duration === 0 || values.difficulty === 0 || values.season === ''
-      || values.countriesId.length === 0)
+      || values.CountryId.length === 0)
+     
     return alert('You must complete all fields');
-    dispatch(createActivities(values));
+    dispatch(createActivities(values))
+    // .then(() => dispatch(getActivities()))
+    //         .then(() => dispatch(getCountries()))
+            .then(() => history('/home'))  
     console.log(values);
     alert('Activity Created');
     setValues({
@@ -55,7 +62,7 @@ const { allCountries} = useSelector((state) => state);
       duration: 0,
       difficulty: 0,
       season: '',
-      countriesId: []
+      CountryId: []
     })
   };
 
@@ -185,7 +192,7 @@ const { allCountries} = useSelector((state) => state);
               <select
                 name="countries"
                 multiple={true}
-                onChange={e => handleSelectCountries(e)}
+                onChange={(e) => handleSelectCountries(e)}
               >
                 {/* <option > Countries </option> */}
                 {allCountries.map((c) => (
@@ -193,7 +200,7 @@ const { allCountries} = useSelector((state) => state);
                 ))}
               </select>
             </label>
-            <div>{values.countriesId}</div>
+            <div>{values.CountryId}</div>
           </div>
           {/* <div>
             {values.countryId.map((country) => (

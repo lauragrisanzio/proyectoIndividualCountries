@@ -56,21 +56,30 @@ export const getByDetail = (id) => {
   };
 };
 
-export const createActivities = (data) => {
+export function createActivities  (data)  {
   console.log(data);
   return async (dispatch) => {
-    const newActivity = await axios.post(
-      "http://localhost:3001/activities",
-      data
-    )
-    
-    return dispatch({
- 
-      payload: newActivity.data
-    });
+    const newActivity = await axios.post("http://localhost:3001/activities", data);
+    return newActivity;
   };
-};
-
+    //  return function (dispatch) {
+    //    return axios
+    //      .post("http://localhost:3001/activities", data)
+    //      .then((response) => response.data)
+    //      .then((response) => {
+    //        dispatch({ type: CREATE_ACTIVITIES, payload: response });
+    //        alert("Se creo la actividad. ");
+    //        return true;
+    //      })
+    //      .catch((error) => {
+    //        console.log(error);
+    //        alert(
+    //          "No se puede crear la actividad. Error: " + error.response.data
+    //        );
+    //        return false;
+    //      });
+    //  };
+}
 
 export const filterContinent = (payload) => {
   return {
@@ -79,10 +88,11 @@ export const filterContinent = (payload) => {
   };
 };
 
-export const filterActivity = (season) => {
+export const filterByActivity = (activities) => {
+  console.log(activities);
   return {
     type: "FILTER_BY_ACTIVITY",
-    payload: season,
+    payload: activities,
   };
 };
 

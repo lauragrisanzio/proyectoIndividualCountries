@@ -1,11 +1,15 @@
 /* */
 
-.cardsList {
+.cardList { 
+    
+    height: 100px;
     width: 85vw;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
     grid-gap: 20px;
-    color: black;
-    border: solid 5px black;
+    /* color: black;
+    border: solid 5px black; */
+   
+
 }

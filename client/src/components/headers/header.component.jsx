@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Card from "../card/card.component";
 
-import { orderByAz, orderByPopulation, filterActivity, filterContinent, getActivities, getCountries } from "../../redux/actions";
+import { orderByAz, orderByPopulation, filterByActivity, filterContinent, getActivities, getCountries } from "../../redux/actions";
 
 import React from 'react'
 
@@ -39,7 +39,7 @@ const Header = () => {
   };
 const handleFilterActivity = (event) => {
   event.preventDefault();
-  dispatch(filterActivity(event.target.value));
+  dispatch(filterByActivity(event.target.value));
   };
   
   return (
@@ -61,10 +61,9 @@ const handleFilterActivity = (event) => {
       </select>
 
       <select name="filter" onChange={handleFilterContinent}>
-        <option value="" selected>
+        <option value="All" selected>
           Filter by Continent:
         </option>
-        <option value="All">All </option>
         <option value="Africa">Africa</option>
         <option value="Antarctica">Antarctica</option>
         <option value="South America">South America</option>
@@ -75,17 +74,14 @@ const handleFilterActivity = (event) => {
       </select>
 
       {/* *ver traduciopn con la Vico  */}
-      <select name="filter" onChange={handleFilterActivity}>
-        <option value="" selected>
+      <select name="filter" id="Filter Activity"onChange={handleFilterActivity}>
+        <option value="All" selected>
           Filter by Activities's Season
         </option>
         {allActivities.map((a) => (
           <option value={a.name}>{a.name}</option>
         ))}
-        {/* <option value="Autumn">Autumn</option>
-        <option value="Spring">Spring</option>
-        <option value="Summer">Summer</option>
-        <option value="Winter">Winter</option> */}
+        
       </select>
 
       {/* {countries.map(({ id, name, flag, continent }) => {

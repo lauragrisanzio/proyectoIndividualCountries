@@ -60,8 +60,9 @@ function Home() {
         de países se hará por partes. Tu SPA debe contar con un paginado que
         muestre un total de 10 países por página.
       </p>
-      <div></div>
-      <Cards allCountries={allCountries} />
+      <div className={styles.cardList}>
+        <Cards allCountries={allCountries} />
+      </div>
     </div>
   );
 };

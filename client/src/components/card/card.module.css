@@ -1,6 +1,6 @@
 .cardContainer {
 background-color: transparent;
-width: 100%;
+width: 40%;
 display: block;
 display: flex;  
 flex-direction: column;
@@ -28,6 +28,11 @@ font-style: black;
  .card{
     border: 5px solid black;
     color: black;
+    width: 310px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    float: left;
  }
 
  .Link{
